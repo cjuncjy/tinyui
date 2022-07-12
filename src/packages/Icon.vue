@@ -1,5 +1,9 @@
 <template>
-  <div>
-    icon
-  </div>
+  <div>icon</div>
 </template>
+
+<script>
+export default {
+  name: 't-icon',
+};
+</script>
