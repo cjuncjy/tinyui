@@ -6,6 +6,8 @@
     <t-button type="success">默认按钮</t-button>
     <t-button type="danger">默认按钮</t-button>
     <t-button type="warning">默认按钮</t-button>
+    <t-icon icon="edit"></t-icon>
+    <t-icon icon="sousuo"></t-icon>
   </div>
 </template>
 
