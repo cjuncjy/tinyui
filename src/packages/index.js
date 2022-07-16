@@ -2,6 +2,8 @@
 // import Icon from './Icon.vue';
 // import ButtonGroup from './ButtonGroup.vue';
 
+import Vue from 'vue';
+
 const install = (Vue) => {
   // 把所有的组件设成全局组件
   // Vue.component(Button.name, Button);
@@ -25,5 +27,10 @@ const install = (Vue) => {
     Vue.component(config.default.name, config.default);
   });
 };
+
+// script引入的
+if (typeof window.vue !== 'undefined') {
+  install(Vue);
+}
 
 export default { install };
