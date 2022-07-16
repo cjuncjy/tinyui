@@ -1,5 +1,7 @@
 <template>
-  <button class="t-button" :class="btnClass">
+  <button class="t-button" :class="btnClass" @click="$emit('click', $event)">
+    <t-icon :icon="icon" class="icon" v-if="icon && !loading"></t-icon>
+    <t-icon icon="loading" v-if="loading" class="icon"></t-icon>
     <span v-if="$slots.default"><slot></slot></span>
   </button>
 </template>
@@ -24,12 +26,32 @@ export default {
         return true;
       },
     },
+    icon: {
+      type: String,
+    },
+    iconPosition: {
+      type: String,
+      default: 'left',
+      validator(type) {
+        if (type && !['left', 'right'].includes(type)) {
+          console.error('iconPosition属性必须为left或right');
+        }
+        return true;
+      },
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     btnClass() {
       let classes = [];
       if (this.type) {
         classes.push(`t-button-${this.type}`);
+      }
+      if (this.iconPosition) {
+        classes.push(`t-button-${this.iconPosition}`);
       }
       return classes;
     },
@@ -129,6 +151,32 @@ $active-color: #3a8ee6;
       border: 1px solid #{$color};
       color: #fff;
       fill: #fff;
+    }
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+  }
+
+  &-left {
+    svg {
+      order: 1;
+      margin-right: 4px;
+    }
+    span {
+      order: 2;
+    }
+  }
+
+  &-right {
+    svg {
+      order: 2;
+    }
+    span {
+      margin-right: 4px;
+      order: 1;
     }
   }
 }
